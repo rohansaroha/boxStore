@@ -8,7 +8,7 @@ const HomeContent = ()=>{
         const boxArr = [];
         for (let i = 0;i < 8;i++){
             boxArr.push(
-                <Card className='seller-box'>
+                <Card className='seller-box' key={i}>
                     <div className="seller-box-img-container">
                         <Reveal animated='fade'>
                             <Reveal.Content visible>

@@ -19,7 +19,7 @@ const Favourite = ()=>{
         const favImgs = [];
         for (let i = 0;i < 6;i++){
             favImgs.push(
-                <img className={"favourite-img"} src={img} alt='favourites-img'/>
+                <img key={i} className={"favourite-img"} src={img} alt='favourites-img'/>
             );
         }
         return favImgs;
