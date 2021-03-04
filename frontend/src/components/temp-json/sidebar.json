@@ -1,0 +1,42 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "link": "/announcement",
+      "text": "Announcement",
+      "icon": "announcement",
+      "tabs": [
+        {"tabId":"1","text": "Circular", "link": "/announcements/circular"},
+        {"tabId":"2","text": "Study Materials", "link": "/announcements/studyMaterial"},
+        {"tabId":"3","text": "Home Work", "link": "/announcements/homeWork"},
+        {"tabId":"4","text": "Messages", "link": "/announcements/messages"},
+        {"tabId":"5","text": "Live Class", "link": "/announcements/liveClass"},
+        {"tabId":"6","text": "Events", "link": "/announcements/events"}
+      ]
+    },
+    {
+      "id": 2,
+      "link": "/students",
+      "text": "Students",
+      "icon": "student"
+    },
+    {
+      "id": 3,
+      "link": "/accounting",
+      "text": "Accounting",
+      "icon": "payment"
+    },
+    {
+      "id": 4,
+      "link": "/examination",
+      "text": "Examinations",
+      "icon": "newspaper"
+    },
+    {
+      "id": 5,
+      "link": "/transport",
+      "text": "Transport",
+      "icon": "bus"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+@import "src/assets/scss/base/styling";
+.footer{
+  &-main-container{
+    height: 30rem;
+    display: flex;
+    justify-content: flex-end;
+    padding: 2rem 12rem;
+  }
+  &-content{
+    &-container{
+      display: flex;
+    }
+    &-services,&-about{
+      h1{
+        @include fontStyle(2.2rem,500,$alpha-color);
+        margin-bottom: 1rem;
+      }
+      p{
+        @include fontStyle(1.2rem,500,$gamma-color);
+        line-height: 2;
+      }
+      margin: 0.5rem 5rem 0.5rem 0;
+    }
+  }
+  &-social-media-container{
+    display: flex;
+    margin: 1rem 0;
+    span{
+      margin: 0.5rem 1.2rem 1rem 0;
+      display: inline-block;
+      width: 3rem;
+      height: 3rem;
+      background-color: $alpha-color;
+      border-radius: 50%;
+    }
+  }
+  &-copyright-container{
+    span{
+      @include fontStyle(1.2rem,500,$gamma-color);
+    }
+  }
+}
