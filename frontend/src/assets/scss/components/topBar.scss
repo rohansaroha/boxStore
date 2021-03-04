@@ -1,0 +1,39 @@
+@import "src/assets/scss/base/styling";
+
+.topbar{
+  &-main-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $beta-color;
+    height: 100%;
+  }
+  &-logo{
+    &-container{
+      span{
+        padding-left: 1.5rem;
+        @include fontStyle(2.5rem,500,$alpha-color);
+        letter-spacing: 1.5px;
+      }
+    }
+  }
+  &-menu{
+    &-container{
+      display: flex;
+    }
+    &-item{
+      padding: 0 1rem;
+      span{
+        @include fontStyle(1.5rem,500,#fff);
+        letter-spacing: 1px;
+      }
+    }
+    &-item-selected{
+      padding: 0 1rem;
+      span{
+        @include fontStyle(1.5rem,500,yellow);
+        letter-spacing: 1px;
+      }
+    }
+  }
+}

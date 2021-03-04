@@ -1,0 +1,44 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "link": "/about",
+      "text": "About Us"
+    },
+    {
+      "id": 2,
+      "link": "/mission",
+      "text": "Mission"
+    },
+    {
+      "id": 3,
+      "link": "/products",
+      "text": "Products"
+    },
+    {
+      "id": 4,
+      "link": "/services",
+      "text": "Services"
+    },
+    {
+      "id": 5,
+      "link": "/contact",
+      "text": "Contact Us"
+    },
+    {
+      "id": 6,
+      "link": "/acount",
+      "text": "My Account"
+    },
+    {
+      "id": 7,
+      "link": "/cart",
+      "text": "Cart"
+    },
+    {
+      "id": 8,
+      "link": "/buy",
+      "text": "Buy"
+    }
+  ]
+}
