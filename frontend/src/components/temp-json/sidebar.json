@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "text": "Pattern",
+      "icon": "braille"
+    },
+    {
+      "id": 2,
+      "text": "Shapes",
+      "icon": "pencil alternate"
+    },
+    {
+      "id": 3,
+      "text": "Images",
+      "icon": "image"
+    },
+    {
+      "id": 4,
+      "text": "Text",
+      "icon": "font"
+    }
+  ]
+}

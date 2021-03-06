@@ -1,0 +1,25 @@
+@import "src/assets/scss/base/styling";
+
+.design{
+  &-main-container{
+    display: flex;
+  }
+  &-sidebar{
+    &-container{
+      width: 10vw;
+      max-width: 8rem;
+    }
+  }
+  &-content{
+    &-container{
+      display: flex;
+    }
+    &-buttons{
+      display: flex;
+      align-items: center;
+    }
+    &-button{
+      @include button(10rem,2.5rem,$gamma-color,#fff,1.2rem);
+    }
+  }
+}

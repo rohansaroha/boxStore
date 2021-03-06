@@ -1,0 +1,38 @@
+@mixin fontStyle($size,$weight,$color){
+  font-family: Rubik;
+  font-size: $size;
+  font-weight: $weight;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: $color;
+}
+.sidebar{
+  &-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 6vh;
+    padding: 3rem 0;
+    &-container{
+      background-color: #faf8f8;
+      height: 91vh;
+    }
+    &-selected{
+      border-left: solid 2.4px #2766cc;
+    }
+    &-container{
+      display: flex;
+      flex-direction: column;
+    }
+    &-text{
+      @include fontStyle(1.2rem,normal,#676767);
+      display: flex;
+      justify-content: center;
+      &-selected{
+        color:#2766cc
+      }
+    }
+  }
+}

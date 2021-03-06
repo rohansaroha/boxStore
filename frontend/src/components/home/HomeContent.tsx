@@ -2,6 +2,7 @@ import React from "react";
 import { Card, Image, Reveal } from "semantic-ui-react";
 import "../../assets/scss/components/home/homeContent.scss";
 import cardImg from "../../assets/img/footerBackroungImg2.jpg";
+import { NavLink } from "react-router-dom";
 
 const HomeContent = ()=>{
     const renderBoxes = ()=>{
@@ -35,7 +36,7 @@ const HomeContent = ()=>{
                             <div className="seller-box-price-bold"><span>2520000</span></div>
                         </div>
                     </div>
-                    <div className="seller-box-button"><span>Design</span></div>
+                    <NavLink to = "/design" className="seller-box-button"><span>Design</span></NavLink>
                 </Card>
             );
         }

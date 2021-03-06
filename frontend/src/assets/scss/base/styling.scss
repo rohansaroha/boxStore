@@ -6,7 +6,6 @@ $gamma-color:#393e46;
 $background-color:#eeeeee;
 
 @function randomColorGenerator(){
-  @debug ("hi");
   $randomColorArray : ['#2766cc','red','green','yellow'];
   $length:length($randomColorArray);
   $randomColor : $randomColorArray[floor(random() * $length)];
