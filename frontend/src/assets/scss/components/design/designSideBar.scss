@@ -27,7 +27,10 @@
   }
 }
 .ui.label{
-  width: 6rem;
+  width: 5.5rem;
   background-color: $alpha-color !important;
   color: $beta-color;
+}
+.ui.selection.dropdown{
+  width: 100%;
 }
