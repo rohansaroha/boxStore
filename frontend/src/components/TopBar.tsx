@@ -5,8 +5,8 @@ const TopBar = ()=>{
     const [id,selectedId] = useState(0);
     const menuData = require("../components/temp-json/topbar.json").data;
     const rendermenu = ()=>{
-        const menu = [];
-        menuData.map((item,index)=>{
+        const menu: Array<any> = [];
+        menuData.map((item: any, index: number)=>{
             let clsString = "topbar-menu-item";
             if(id === item.id){
                 // eslint-disable-next-line no-console
