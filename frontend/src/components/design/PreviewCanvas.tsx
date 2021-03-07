@@ -1,23 +1,24 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Icon } from "semantic-ui-react";
+import "../../assets/scss/components/design/previewCanvas.scss";
 
 export const PreviewCanvas = (props:any) => {
+    const [radius,setRadius] = useState(60);
+    const previewCanvasRef = useRef(null);
+
     const zoomIn = ()=>{
-        let GFG:any = document.getElementById("previewCanvas");
-        let currHeight = GFG.clientHeight;
-        GFG.style.height = (currHeight + 40) + "px";
+        setRadius(radius + 10);
     };
     const zoomOut = ()=>{
-        let GFG:any = document.getElementById("previewCanvas");
-        let currHeight = GFG.clientHeight;
-        GFG.style.height = (currHeight - 40) + "px";
+        if(radius > 0){
+            setRadius(radius - 10);
+        }
     };
-    const previewCanvasRef = useRef(null);
 
     const draw = (ctx:any) => {
         ctx.fillStyle = "#00adb5";
         ctx.beginPath();
-        ctx.arc(150, 100, 50, 0, 2 * Math.PI);
+        ctx.arc(250, 100, radius, 0, 2 * Math.PI);
         ctx.fill();
     };
 
@@ -43,7 +44,7 @@ export const PreviewCanvas = (props:any) => {
                     </div>
                 </div>
             </div>
-            <canvas id={"previewCanvas"} ref={previewCanvasRef} width={"500"} height={"200"} style={{ border: "1px solid #d8d8d8" }}{...props}/>
+            <canvas id={"previewCanvas"} ref={previewCanvasRef} width={"500"} height={"200"}{...props}/>
         </div>
         );
 };

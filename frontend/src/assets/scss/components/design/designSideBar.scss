@@ -1,38 +1,33 @@
-@mixin fontStyle($size,$weight,$color){
-  font-family: Rubik;
-  font-size: $size;
-  font-weight: $weight;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.5;
-  letter-spacing: normal;
-  color: $color;
-}
+@import "../frontend/src/assets/scss/base/styling";
+
 .sidebar{
   &-item{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 6vh;
-    padding: 3rem 0;
-    &-container{
-      background-color: #faf8f8;
-      height: 91vh;
-    }
-    &-selected{
-      border-left: solid 2.4px #2766cc;
-    }
-    &-container{
-      display: flex;
-      flex-direction: column;
-    }
-    &-text{
-      @include fontStyle(1.2rem,normal,#676767);
+    &-header{
       display: flex;
       justify-content: center;
-      &-selected{
-        color:#2766cc
+      text-transform: uppercase;
+      margin: 0.5rem 0;
+      span{
+        @include fontStyle(1.6rem,500,$beta-color);
       }
     }
   }
+  &-buttons{
+    display: flex;
+    justify-content: space-around;
+  }
+  &-button{
+    @include button(10rem,2rem,$gamma-color,#fff,1.2rem)
+  }
+  &-input{
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem 0;
+  }
+}
+.ui.label{
+  width: 6rem;
+  background-color: $alpha-color !important;
+  color: $beta-color;
 }

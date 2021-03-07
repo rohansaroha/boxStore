@@ -29,5 +29,5 @@ export const Canvas = (props:any)=>{
             window.cancelAnimationFrame(animationFrameId);
         };
     }, [draw]);
-    return <canvas ref={canvasRef} width={"1000"} height={"510"} style={{ border: "1px solid #d8d8d8" }} {...props}/>;
+    return <canvas ref={canvasRef} width={"1100"} height={"400"} {...props}/>;
 };

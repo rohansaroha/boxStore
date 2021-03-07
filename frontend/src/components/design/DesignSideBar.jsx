@@ -1,64 +1,49 @@
-import React, { useState } from "react";
-import { Icon } from "semantic-ui-react";
-import { NavLink } from "react-router-dom";
+import React from "react";
 import  "../../assets/scss/components/design/designSideBar.scss";
+import { Form, Input } from "semantic-ui-react";
 
 const DesignSideBar = ()=>{
-    const sideBarData = require("../temp-json/sidebar.json").data;
-    const [menu,showMenu] = useState(false);
-    const [id,selectedId] = useState(1);
-    const renderSidebar = ()=>{
-        const sideBarItems = [];
-        sideBarData.map((sideBarItem)=>{
-            let sideBarItemClsString = "sidebar-item";
-            let sideBarItemTextClsString = "sidebar-item-text";
-            let selected = false;
+    const options = [
+        { key: "m", text: "Male", value: "male" },
+        { key: "f", text: "Female", value: "female" },
+        { key: "o", text: "Other", value: "other" },
+    ];
 
-            let subItemsRenderHandler = ()=>{
-                selectedId(sideBarItem.id);
-                if(sideBarItem.tabs){
-                    menu ? showMenu(false) : showMenu(true);
-                }
-
-            };
-            let renderSubItems = ()=>{
-                let sideBarSubItemClsString = "sidebar-item";
-                // let sideBarSubItemTextClsString = 'sidebar-item-text';
-                let sideBarMenu = [];
-                sideBarItem.tabs.map((subItems,index)=>{
-                    sideBarMenu.push(
-                        <NavLink to = {subItems.link} className={sideBarSubItemClsString} key={index}>
-                            {subItems.text}
-                        </NavLink>
-                    );
-                });
-                return sideBarMenu;
-            };
-
-            if(id === sideBarItem.id){
-                sideBarItemClsString = "sidebar-item sidebar-item-selected";
-                sideBarItemTextClsString = "sidebar-item-text sidebar-item-text-selected";
-                selected = true;
-            }
-            sideBarItems.push(
-                <div onClick={subItemsRenderHandler} className={sideBarItemClsString} key={sideBarItem.id}>
-                    <div>
-                        <Icon name={sideBarItem.icon} size={"big"} color={selected ? "blue" : "grey"} style={{ margin: "0 1rem" }}/>
-                        <div className={sideBarItemTextClsString}>
-                            <div>{sideBarItem.text}</div>
-                        </div>
-                    </div>
-                    <div>
-                        { menu && sideBarItem.tabs ? renderSubItems() : null}
-                    </div>
-                </div>
-            );
-        });
-        return sideBarItems;
-    };
     return(
         <div className='sidebar-item-container'>
-            {renderSidebar()}
+            <div className={"sidebar-item-header"}>
+                <span>Length</span>
+            </div>
+            <div>
+                <Input className={"sidebar-input"} label={"Width"} type={"text"}/>
+                <Input className={"sidebar-input"} label={"Height"} type={"text"}/>
+                <Form.Select className={"sidebar-input"} options={options} placeholder='Material' />
+                <Input className={"sidebar-input"} label={"Quantity"} type={"number"}/>
+                <Input className={"sidebar-input"} label={"Price"} type={"number"}/>
+            </div>
+            <div className={"sidebar-buttons"}>
+                <div className={"sidebar-button"}>
+                    <span>Draw</span>
+                </div>
+                <div className={"sidebar-button"}>
+                    <span>3D View</span>
+                </div>
+            </div>
+            <div className={"sidebar-border"}/>
+            <div className={"sidebar-item-header"}>
+                <span>Sheet Size</span>
+            </div>
+            <div>
+                <Input className={"sidebar-input"} label={"Width"} type={"text"}/>
+            </div>
+            <div className={"sidebar-buttons"}>
+                <div className={"sidebar-button"}>
+                    <span>Layout</span>
+                </div>
+                <div className={"sidebar-button"}>
+                    <span>View</span>
+                </div>
+            </div>
         </div>
     );
 };

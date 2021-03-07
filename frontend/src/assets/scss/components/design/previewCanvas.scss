@@ -1,0 +1,26 @@
+@import "src/assets/scss/base/styling";
+
+.previewCanvas{
+  &-container{
+    padding: 1rem;
+    border: solid 2px #d8d8d8;
+    background: white !important;
+  }
+  &-header{
+    flex: 5;
+    text-align: center;
+    span{
+      @include fontStyle(1.2rem,500,$beta-color)
+    }
+    &-container{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+  &-buttons{
+    display: flex;
+    flex: 1;
+    justify-content: space-around;
+  }
+}
