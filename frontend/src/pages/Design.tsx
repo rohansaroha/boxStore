@@ -2,10 +2,12 @@ import React from "react";
 import DesignSideBar from "../components/design/DesignSideBar";
 import Layout from "../components/base/Layout";
 import "../assets/scss/pages/design.scss";
-import img from "../assets/img/3DImage.png";
-import imgPrivew from "../assets/img/3dImagePreview.png";
+import { PreviewCanvas } from "../components/design/PreviewCanvas";
+import { Icon } from "semantic-ui-react";
+import { Canvas } from "../components/design/Canvas";
 
 const Design = ()=>{
+
     return(
         <Layout>
             <div className={"design-main-container"}>
@@ -14,7 +16,7 @@ const Design = ()=>{
                 </div>
                 <div className={"design-content-container"}>
                     <div className={"design-content-primary"}>
-                        <img src={img} alt="image" style={{ height: "80vh" , width: "70vw" }}/>
+                        <Canvas/>
                         <div className={"design-content-buttons"}>
                             <div className={"design-content-button"}>
                                 <span>3D View</span>
@@ -31,7 +33,7 @@ const Design = ()=>{
                         </div>
                     </div>
                     <div className="design-content-secondary">
-                        <img src={imgPrivew} alt={"img-preivew"}/>
+                        <PreviewCanvas/>
                     </div>
                 </div>
             </div>
