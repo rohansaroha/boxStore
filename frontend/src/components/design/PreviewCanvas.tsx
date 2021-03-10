@@ -17,6 +17,7 @@ export const PreviewCanvas = (props:any) => {
 
     const draw = (ctx:any) => {
         ctx.fillStyle = "#00adb5";
+        ctx.clearRect(0, 0, 500, 500);
         ctx.beginPath();
         ctx.arc(250, 100, radius, 0, 2 * Math.PI);
         ctx.fill();
