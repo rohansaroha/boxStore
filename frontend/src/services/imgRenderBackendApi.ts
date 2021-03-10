@@ -5,6 +5,6 @@ import { config } from "./basicAuth";
 export class imgRenderBackendApi{
     static async imgRender(standardId:string){
         const url = baseUrl + `/standards/${standardId}/preview`;
-        return axios.get(url,config);
+        return axios.get(url, { ...config, responseType: "arraybuffer" });
     }
 }

@@ -11,11 +11,13 @@ const HomeContent = ()=>{
     useEffect( ()=>{
         imgRenderBackendApi.imgRender("0423")
             .then((res)=>{
-                let b64Response:string = "data:image/png;base64," + btoa(unescape(encodeURIComponent(res.data)));
-                SetImgSrc(b64Response);
+                console.log(res);
+                const bytes = new Uint8Array(res.data);
+                const blob = new Blob( [ bytes ], { type: "image/jpeg" } );
+                const urlCreator = window.URL || window.webkitURL;
+                const imageUrl = urlCreator.createObjectURL( blob );
+                SetImgSrc(imageUrl);
                 SetLoader(false);
-                console.log(imgSrc);
-                // console.log(base64.encode(res.data));
             })
         .catch((err)=>{
             console.log(err);
