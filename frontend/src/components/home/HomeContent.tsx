@@ -6,12 +6,12 @@ import { imgRenderBackendApi } from "../../services/imgRenderBackendApi";
 
 const HomeContent = ()=>{
     const [imgSrc,SetImgSrc] = useState<string|null>(null);
+    const [imgSrc2,SetImgSrc2] = useState<string|null>(null);
     const [loader,SetLoader] = useState(true);
 
     useEffect( ()=>{
         imgRenderBackendApi.imgRender("0423")
             .then((res)=>{
-                console.log(res);
                 const bytes = new Uint8Array(res.data);
                 const blob = new Blob( [ bytes ], { type: "image/jpeg" } );
                 const urlCreator = window.URL || window.webkitURL;
@@ -22,17 +22,30 @@ const HomeContent = ()=>{
         .catch((err)=>{
             console.log(err);
         });
+        imgRenderBackendApi.imgRender("0427")
+            .then((res)=>{
+                const bytes = new Uint8Array(res.data);
+                const blob = new Blob( [ bytes ], { type: "image/jpeg" } );
+                const urlCreator = window.URL || window.webkitURL;
+                const imageUrl = urlCreator.createObjectURL( blob );
+                SetImgSrc2(imageUrl);
+                SetLoader(false);
+            })
+        .catch((err)=>{
+            console.log(err);
+        });
     },[]);
 
     const renderBoxes = ()=>{
         const boxArr = [];
         for (let i = 0;i < 4;i++){
+            const imgArr:[(string | null), (string | null), (string | null), (string | null)] = [imgSrc,imgSrc2,imgSrc,imgSrc2];
             boxArr.push(
                 <Card className='seller-box' key={i}>
                     <div className="seller-box-img-container">
                         <Reveal animated='fade'>
                             <Reveal.Content visible>
-                                <Image className="seller-box-img" src={imgSrc} size='small' />
+                                <Image className="seller-box-img" src={imgArr[i]} size='small' />
                             </Reveal.Content>
                             <Reveal.Content hidden>
                                 <div className={"seller-box-img-hidden"}><span>View Details</span></div>
@@ -55,7 +68,7 @@ const HomeContent = ()=>{
                             <div className="seller-box-price-bold"><span>2520000</span></div>
                         </div>
                     </div>
-                    <NavLink to = "/design" className="seller-box-button"><span>Design</span></NavLink>
+                    <NavLink to = "/design/0427" className="seller-box-button"><span>Design</span></NavLink>
                 </Card>
             );
         }

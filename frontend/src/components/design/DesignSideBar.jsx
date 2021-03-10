@@ -8,7 +8,8 @@ const DesignSideBar = ()=>{
         { key: "m", text: "350 GSM White board", value: "350GSM" }
     ];
     const sheetSizeOptions = [
-        { key: "m", text: "8X11 inches", value: "8X11" }
+        { key: "m", text: "8X11 inches", value: "8X11" },
+        { key: "m", text: "245mm * 350mm", value: "245mm" }
     ];
 
     const drawApi = ()=>{
@@ -25,7 +26,6 @@ const DesignSideBar = ()=>{
         <div className='sidebar-item-container'>
             <div>
                 <Form.Select className={"sidebar-input"} options={materialOptions} placeholder='Material' />
-                <Form.Select className={"sidebar-input"} options={sheetSizeOptions} placeholder='SheetSize' />
                 <Input className={"sidebar-input"} label={"Length"} type={"text"}/>
                 <Input className={"sidebar-input"} label={"Width"} type={"text"}/>
                 <Input className={"sidebar-input"} label={"Height"} type={"text"}/>
@@ -39,6 +39,9 @@ const DesignSideBar = ()=>{
                 <div className={"sidebar-button"}>
                     <span>3D View</span>
                 </div>
+            </div>
+            <div>
+                <Form.Select className={"sidebar-input"} options={sheetSizeOptions} placeholder='SheetSize' />
             </div>
             <div className={"sidebar-buttons"}>
                 <div className={"sidebar-button"}>
