@@ -21,19 +21,16 @@ const Design = ()=>{
                 <div className="design-content-preview">
                     <div className={"design-content-buttons"}>
                         <div className={"design-content-button"}>
-                            <span>3D View</span>
+                            <span>Text</span>
                         </div>
                         <div className={"design-content-button"}>
-                            <span>Upload</span>
+                            <span>Image</span>
                         </div>
                         <div className={"design-content-button"}>
-                            <span>Save</span>
+                            <span>Shapes</span>
                         </div>
                         <div className={"design-content-button"}>
-                            <span>Download</span>
-                        </div>
-                        <div className={"design-content-button"}>
-                            <span>Color</span>
+                            <span>Background</span>
                         </div>
                     </div>
                     <PreviewCanvas/>

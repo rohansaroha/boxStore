@@ -1,19 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Image, Reveal } from "semantic-ui-react";
 import "../../assets/scss/components/home/homeContent.scss";
-import cardImg from "../../assets/img/footerBackroungImg2.jpg";
 import { NavLink } from "react-router-dom";
+import { imgRenderBackendApi } from "../../services/imgRenderBackendApi";
 
 const HomeContent = ()=>{
+    const [imgSrc,SetImgSrc] = useState<string|null>(null);
+    const [loader,SetLoader] = useState(true);
+
+    useEffect( ()=>{
+        imgRenderBackendApi.imgRender("0423")
+            .then((res)=>{
+                let b64Response:string = "data:image/png;base64," + btoa(unescape(encodeURIComponent(res.data)));
+                SetImgSrc(b64Response);
+                SetLoader(false);
+                console.log(imgSrc);
+                // console.log(base64.encode(res.data));
+            })
+        .catch((err)=>{
+            console.log(err);
+        });
+    },[]);
+
     const renderBoxes = ()=>{
         const boxArr = [];
-        for (let i = 0;i < 8;i++){
+        for (let i = 0;i < 4;i++){
             boxArr.push(
                 <Card className='seller-box' key={i}>
                     <div className="seller-box-img-container">
                         <Reveal animated='fade'>
                             <Reveal.Content visible>
-                                <Image className="seller-box-img" src={cardImg} size='small' />
+                                <Image className="seller-box-img" src={imgSrc} size='small' />
                             </Reveal.Content>
                             <Reveal.Content hidden>
                                 <div className={"seller-box-img-hidden"}><span>View Details</span></div>
@@ -40,13 +57,18 @@ const HomeContent = ()=>{
                 </Card>
             );
         }
+        console.log(imgSrc);
         return boxArr;
     };
     return (
-        <div className={"seller-main-container"}>
-            <div className={"seller-header"}><span>Shop All Boxes</span></div>
-            <div className={"seller-box-container"}>{renderBoxes()}</div>
-        </div>
+        loader
+            ? (<span>loading</span>)
+            : (
+                <div className={"seller-main-container"}>
+                    <div className={"seller-header"}><span>Shop All Boxes</span></div>
+                    <div className={"seller-box-container"}>{renderBoxes()}</div>
+                </div>
+            )
     );
 };
 export default HomeContent;

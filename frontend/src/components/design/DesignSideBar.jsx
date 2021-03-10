@@ -1,40 +1,44 @@
 import React from "react";
 import  "../../assets/scss/components/design/designSideBar.scss";
 import { Form, Input } from "semantic-ui-react";
+import { drawBackendApi } from "../../services/drawBackendApi";
 
 const DesignSideBar = ()=>{
-    const options = [
-        { key: "m", text: "Male", value: "male" },
-        { key: "f", text: "Female", value: "female" },
-        { key: "o", text: "Other", value: "other" },
+    const materialOptions = [
+        { key: "m", text: "350 GSM White board", value: "350GSM" }
+    ];
+    const sheetSizeOptions = [
+        { key: "m", text: "8X11 inches", value: "8X11" }
     ];
 
+    const drawApi = ()=>{
+        drawBackendApi.drawCanvas("0427","9999","My jobs")
+            .then((res)=>{
+                console.log(res);
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
+        ;
+    };
     return(
         <div className='sidebar-item-container'>
-            <div className={"sidebar-item-header"}>
-                <span>Length</span>
-            </div>
             <div>
+                <Form.Select className={"sidebar-input"} options={materialOptions} placeholder='Material' />
+                <Form.Select className={"sidebar-input"} options={sheetSizeOptions} placeholder='SheetSize' />
+                <Input className={"sidebar-input"} label={"Length"} type={"text"}/>
                 <Input className={"sidebar-input"} label={"Width"} type={"text"}/>
                 <Input className={"sidebar-input"} label={"Height"} type={"text"}/>
-                <Form.Select className={"sidebar-input"} options={options} placeholder='Material' />
                 <Input className={"sidebar-input"} label={"Quantity"} type={"number"}/>
                 <Input className={"sidebar-input"} label={"Price"} type={"number"}/>
             </div>
             <div className={"sidebar-buttons"}>
-                <div className={"sidebar-button"}>
+                <div onClick={drawApi} className={"sidebar-button"}>
                     <span>Draw</span>
                 </div>
                 <div className={"sidebar-button"}>
                     <span>3D View</span>
                 </div>
-            </div>
-            <div className={"sidebar-border"}/>
-            <div className={"sidebar-item-header"}>
-                <span>Sheet Size</span>
-            </div>
-            <div>
-                <Input className={"sidebar-input"} label={"Width"} type={"text"}/>
             </div>
             <div className={"sidebar-buttons"}>
                 <div className={"sidebar-button"}>
