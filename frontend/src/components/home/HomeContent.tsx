@@ -22,6 +22,7 @@ const HomeContent = ()=>{
         .catch((err)=>{
             console.log(err);
         });
+
         imgRenderBackendApi.imgRender("0427")
             .then((res)=>{
                 const bytes = new Uint8Array(res.data);

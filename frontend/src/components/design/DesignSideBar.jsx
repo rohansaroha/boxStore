@@ -1,34 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import  "../../assets/scss/components/design/designSideBar.scss";
 import { Form, Input } from "semantic-ui-react";
 import { drawBackendApi } from "../../services/drawBackendApi";
+import { toast } from "react-toastify";
 
 const DesignSideBar = ()=>{
+    const [materialName,setMaterialName] = useState("");
+    const [length,setLength] = useState(null);
+    const [width,setWidth] = useState(null);
+    const [depth,setDepth] = useState(null);
     const materialOptions = [
-        { key: "m", text: "350 GSM White board", value: "350GSM" }
+        { key: "m", text: "350 GSM White board", value: "350GSM" },
+        { key: "l", text: "Corrugated|B Flute", value: "Corrugated|B Flute" },
     ];
     const sheetSizeOptions = [
         { key: "m", text: "8X11 inches", value: "8X11" },
-        { key: "m", text: "245mm * 350mm", value: "245mm" }
+        { key: "l", text: "245mm * 350mm", value: "245mm" }
     ];
 
     const drawApi = ()=>{
-        drawBackendApi.drawCanvas("0427","9999","My jobs")
+        let rawValues = { materialName,length,width,depth };
+        drawBackendApi.drawCanvas("267","4","165",rawValues)
             .then((res)=>{
-                console.log(res);
+                console.log(res.data);
             })
             .catch((err)=>{
-                console.log(err);
+                toast.error(err);
             })
         ;
     };
     return(
         <div className='sidebar-item-container'>
             <div>
-                <Form.Select className={"sidebar-input"} options={materialOptions} placeholder='Material' />
-                <Input className={"sidebar-input"} label={"Length"} type={"text"}/>
-                <Input className={"sidebar-input"} label={"Width"} type={"text"}/>
-                <Input className={"sidebar-input"} label={"Height"} type={"text"}/>
+                <Form.Select onChange={(e)=>setMaterialName(e.currentTarget.textContent)} className={"sidebar-input"} options={materialOptions} placeholder='Material' />
+                <Input onChange={(e)=>setLength(e.target.value)} className={"sidebar-input"} label={"Length"} type={"number"}/>
+                <Input onChange={(e)=>setWidth(e.target.value)} className={"sidebar-input"} label={"Width"} type={"number"}/>
+                <Input onChange={(e)=>setDepth(e.target.value)} className={"sidebar-input"} label={"Height"} type={"number"}/>
                 <Input className={"sidebar-input"} label={"Quantity"} type={"number"}/>
                 <Input className={"sidebar-input"} label={"Price"} type={"number"}/>
             </div>
