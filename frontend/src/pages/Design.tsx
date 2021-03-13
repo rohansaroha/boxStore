@@ -4,6 +4,7 @@ import Layout from "../components/base/Layout";
 import "../assets/scss/pages/design.scss";
 import { PreviewCanvas } from "../components/design/PreviewCanvas";
 import { Canvas } from "../components/design/Canvas";
+import CanvasEditor from "../components/design/CanvasEditor";
 
 const Design = ()=>{
 
@@ -35,6 +36,7 @@ const Design = ()=>{
                     </div>
                     <PreviewCanvas/>
                 </div>
+                <CanvasEditor/>
             </div>
         </Layout>
     );
