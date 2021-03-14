@@ -1,9 +1,11 @@
-import React from "react";
+import React, { createContext, useContext } from "react";
 import "tui-image-editor/dist/tui-image-editor.css";
 // @ts-ignore
 import ImageEditor from "@toast-ui/react-image-editor";
+import { ImgContext } from "../../context/ImgContext";
 
 const CanvasEditor = ()=>{
+    const imgData = useContext(ImgContext);
     const myTheme = {
         "menu.backgroundColor": "white",
         "common.backgroundColor": "#151515",
@@ -16,14 +18,14 @@ const CanvasEditor = ()=>{
             <ImageEditor
                 includeUI={{
                     loadImage: {
-                        path: "img/sampleImage.jpg",
+                        path: imgData.imgSrc,
                         name: "SampleImage",
                     },
                     theme: myTheme,
                     menu: ["shape", "filter","text"],
                     initMenu: "filter",
                     uiSize: {
-                        width: "1000px",
+                        width: "1200px",
                         height: "700px",
                     },
                     menuBarPosition: "bottom",
@@ -34,7 +36,7 @@ const CanvasEditor = ()=>{
                     cornerSize: 20,
                     rotatingPointOffset: 70,
                 }}
-                usageStatistics={false}
+                usageStatistics={true}
             />
         </div>
     );

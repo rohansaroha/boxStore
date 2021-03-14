@@ -3,7 +3,6 @@ import DesignSideBar from "../components/design/DesignSideBar";
 import Layout from "../components/base/Layout";
 import "../assets/scss/pages/design.scss";
 import { PreviewCanvas } from "../components/design/PreviewCanvas";
-import { Canvas } from "../components/design/Canvas";
 import CanvasEditor from "../components/design/CanvasEditor";
 
 const Design = ()=>{
@@ -16,7 +15,7 @@ const Design = ()=>{
                         <DesignSideBar/>
                     </div>
                     <div className={"design-content-primary"}>
-                        <Canvas/>
+                        <CanvasEditor/>
                     </div>
                 </div>
                 <div className="design-content-preview">
@@ -36,7 +35,6 @@ const Design = ()=>{
                     </div>
                     <PreviewCanvas/>
                 </div>
-                <CanvasEditor/>
             </div>
         </Layout>
     );

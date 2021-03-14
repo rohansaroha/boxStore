@@ -1,46 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Card, Image, Reveal } from "semantic-ui-react";
 import "../../assets/scss/components/home/homeContent.scss";
 import { NavLink } from "react-router-dom";
-import { imgRenderBackendApi } from "../../services/imgRenderBackendApi";
+import { ImgContext } from "../../context/ImgContext";
 
 const HomeContent = ()=>{
-    const [imgSrc,SetImgSrc] = useState<string|null>(null);
-    const [imgSrc2,SetImgSrc2] = useState<string|null>(null);
-    const [loader,SetLoader] = useState(true);
-
-    useEffect( ()=>{
-        imgRenderBackendApi.imgRender("0423")
-            .then((res)=>{
-                const bytes = new Uint8Array(res.data);
-                const blob = new Blob( [ bytes ], { type: "image/jpeg" } );
-                const urlCreator = window.URL || window.webkitURL;
-                const imageUrl = urlCreator.createObjectURL( blob );
-                SetImgSrc(imageUrl);
-                SetLoader(false);
-            })
-        .catch((err)=>{
-            console.log(err);
-        });
-
-        imgRenderBackendApi.imgRender("0427")
-            .then((res)=>{
-                const bytes = new Uint8Array(res.data);
-                const blob = new Blob( [ bytes ], { type: "image/jpeg" } );
-                const urlCreator = window.URL || window.webkitURL;
-                const imageUrl = urlCreator.createObjectURL( blob );
-                SetImgSrc2(imageUrl);
-                SetLoader(false);
-            })
-        .catch((err)=>{
-            console.log(err);
-        });
-    },[]);
+    const imgData = useContext(ImgContext);
 
     const renderBoxes = ()=>{
         const boxArr = [];
         for (let i = 0;i < 4;i++){
-            const imgArr:[(string | null), (string | null), (string | null), (string | null)] = [imgSrc,imgSrc2,imgSrc,imgSrc2];
+            const imgArr = [imgData.imgSrc,imgData.imgSrc2,imgData.imgSrc2,imgData.imgSrc];
             boxArr.push(
                 <Card className='seller-box' key={i}>
                     <div className="seller-box-img-container">
@@ -73,18 +43,13 @@ const HomeContent = ()=>{
                 </Card>
             );
         }
-        console.log(imgSrc);
         return boxArr;
     };
     return (
-        loader
-            ? (<span>loading</span>)
-            : (
                 <div className={"seller-main-container"}>
                     <div className={"seller-header"}><span>Shop All Boxes</span></div>
                     <div className={"seller-box-container"}>{renderBoxes()}</div>
                 </div>
-            )
-    );
+            );
 };
 export default HomeContent;
