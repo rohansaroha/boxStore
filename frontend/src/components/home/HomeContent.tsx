@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Card, Image, Reveal } from "semantic-ui-react";
 import "../../assets/scss/components/home/homeContent.scss";
 import { NavLink } from "react-router-dom";
-import { ImgContext } from "../../context/ImgContext";
+import { ImgContext } from "../../hooks/ImgContext";
 
 const HomeContent = ()=>{
     const imgData = useContext(ImgContext);

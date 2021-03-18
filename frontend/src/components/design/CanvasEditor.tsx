@@ -2,7 +2,7 @@ import React, { createContext, useContext } from "react";
 import "tui-image-editor/dist/tui-image-editor.css";
 // @ts-ignore
 import ImageEditor from "@toast-ui/react-image-editor";
-import { ImgContext } from "../../context/ImgContext";
+import { ImgContext } from "../../hooks/ImgContext";
 
 const CanvasEditor = ()=>{
     const imgData = useContext(ImgContext);

@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "../src/assets/scss/app.scss";
 import Home from "./pages/Home";
 import Design from "./pages/Design";
-import { ImgProvider } from "./context/ImgContext";
+import { ImgProvider } from "./hooks/ImgContext";
 
 function App() {
   return (

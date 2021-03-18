@@ -14,6 +14,7 @@ export const ImgContext = createContext({
 export const ImgProvider = ({ children }:{children:React.ReactNode})=>{
     const providerValue = useProviderImg();
     return <ImgContext.Provider value={providerValue}>{children}</ImgContext.Provider>;
+
 };
 
 const useProviderImg = ():IImg=>{
