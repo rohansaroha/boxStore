@@ -8,7 +8,7 @@ const CanvasEditor = ()=>{
     const imgData = useContext(ImgContext);
     const myTheme = {
         "menu.backgroundColor": "white",
-        "common.backgroundColor": "#151515",
+        "common.backgroundColor": "white",
         "downloadButton.backgroundColor": "white",
         "downloadButton.borderColor": "white",
         "downloadButton.color": "black"
@@ -22,7 +22,7 @@ const CanvasEditor = ()=>{
                         name: "SampleImage",
                     },
                     theme: myTheme,
-                    menu: ["shape", "filter","text"],
+                    menu: ["crop", "flip", "rotate", "draw", "shape", "icon", "text", "mask", "filter"],
                     initMenu: "filter",
                     uiSize: {
                         width: "1200px",

@@ -6,9 +6,9 @@ import { toast } from "react-toastify";
 
 const DesignSideBar = ()=>{
     const [materialName,setMaterialName] = useState("");
-    const [length,setLength] = useState(null);
-    const [width,setWidth] = useState(null);
-    const [depth,setDepth] = useState(null);
+    const [length,setLength] = useState(10);
+    const [width,setWidth] = useState(10);
+    const [depth,setDepth] = useState(10);
     const materialOptions = [
         { key: "m", text: "350 GSM White board", value: "350GSM" },
         { key: "l", text: "Corrugated|B Flute", value: "Corrugated|B Flute" },
@@ -33,9 +33,9 @@ const DesignSideBar = ()=>{
         <div className='sidebar-item-container'>
             <div>
                 <Form.Select onChange={(e)=>setMaterialName(e.currentTarget.textContent)} className={"sidebar-input"} options={materialOptions} placeholder='Material' />
-                <Input onChange={(e)=>setLength(e.target.value)} className={"sidebar-input"} label={"Length"} type={"number"}/>
-                <Input onChange={(e)=>setWidth(e.target.value)} className={"sidebar-input"} label={"Width"} type={"number"}/>
-                <Input onChange={(e)=>setDepth(e.target.value)} className={"sidebar-input"} label={"Height"} type={"number"}/>
+                <Input value={length} onChange={(e)=>setLength(e.target.value)} className={"sidebar-input"} label={"Length"} type={"number"}/>
+                <Input value={width} onChange={(e)=>setWidth(e.target.value)} className={"sidebar-input"} label={"Width"} type={"number"}/>
+                <Input value={depth} onChange={(e)=>setDepth(e.target.value)} className={"sidebar-input"} label={"Height"} type={"number"}/>
                 <Input className={"sidebar-input"} label={"Quantity"} type={"number"}/>
                 <Input className={"sidebar-input"} label={"Price"} type={"number"}/>
             </div>
