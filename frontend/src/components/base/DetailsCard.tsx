@@ -2,20 +2,19 @@ import React from "react";
 import "../../assets/scss/base/detailsCard.scss";
 
 interface IDetailsCard  {
-    text:string,
     header:string,
-    color:string
+    description:string
 }
 
 const DetailsCard = (props:IDetailsCard)=>{
     return (
-        <div className='detailsCard-container' style={{ backgroundColor: props.color }}>
+        <div className='detailsCard-container'>
             <div>
-                <div className='detailsCard-text'>
-                    <span>{props.text}</span>
+                <div className='detailsCard-header'>
+                    <span>{props.header}</span>
                 </div>
-                <div className="detailsCard-header">
-                    <span>{props.header.toUpperCase()}</span>
+                <div className="detailsCard-description">
+                    <span>{props.description}</span>
                 </div>
             </div>
         </div>

@@ -11,8 +11,8 @@
   &-logo{
     &-container{
       span{
-        padding-left: 1.5rem;
-        @include fontStyle(2.5rem,500,$alpha-color);
+        padding-left: 2rem;
+        @include fontStyle(2.8rem,500,$alpha-color);
         letter-spacing: 1.5px;
       }
     }
