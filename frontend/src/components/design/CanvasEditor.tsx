@@ -1,14 +1,16 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import "tui-image-editor/dist/tui-image-editor.css";
 // @ts-ignore
 import ImageEditor from "@toast-ui/react-image-editor";
-import { ImgContext } from "../../context/ImgContext";
+import { ImgContext } from "../../hooks/ImgContext";
 
 const CanvasEditor = ()=>{
-    const imgData = useContext(ImgContext);
+    const canvasImgSrc = useContext(ImgContext);
+    console.log(canvasImgSrc.canvasImgSrc);
+
     const myTheme = {
         "menu.backgroundColor": "white",
-        "common.backgroundColor": "#151515",
+        "common.backgroundColor": "white",
         "downloadButton.backgroundColor": "white",
         "downloadButton.borderColor": "white",
         "downloadButton.color": "black"
@@ -18,7 +20,7 @@ const CanvasEditor = ()=>{
             <ImageEditor
                 includeUI={{
                     loadImage: {
-                        path: imgData.imgSrc,
+                        path: canvasImgSrc.canvasImgSrc,
                         name: "SampleImage",
                     },
                     theme: myTheme,

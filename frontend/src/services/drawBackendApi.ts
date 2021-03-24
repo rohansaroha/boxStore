@@ -23,7 +23,7 @@ interface IRawValuesProps{
 // }
 
 export class drawBackendApi{
-    static async drawCanvas(standardId:string,customerId:string,folderId:string,rawValues:IRawValuesProps){
+    static async drawImage(standardId:string,customerId:string,folderId:string,rawValues:IRawValuesProps){
         let drawValuesData:any = {};
         drawValuesData["MaterialName"] = rawValues.materialName;
         drawValuesData["Metric"] = true;
@@ -42,5 +42,10 @@ export class drawBackendApi{
 
         let url = baseUrl + `/standards/${standardId}/creator?customerId=${customerId}&folderId=${folderId}`;
         return axios.post(url,drawValuesData,config);
+    }
+
+    static async drawCanvas(standardId:string,layer:string){
+        let url = baseUrl + `/projects/${standardId}/layers/${layer}/preview`;
+        return axios.get(url, { ...config, responseType: "arraybuffer" });
     }
 }

@@ -20,7 +20,7 @@ const DesignSideBar = ()=>{
 
     const drawApi = ()=>{
         let rawValues = { materialName,length,width,depth };
-        drawBackendApi.drawCanvas("267","4","165",rawValues)
+        drawBackendApi.drawImage("267","4","165",rawValues)
             .then((res)=>{
                 console.log(res.data);
             })

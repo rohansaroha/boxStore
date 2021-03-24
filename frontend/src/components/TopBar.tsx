@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import "../assets/scss/components/topBar.scss";
 
 const TopBar = ()=>{
@@ -17,16 +18,16 @@ const TopBar = ()=>{
                 selectedId(item.id);
             };
             menu.push(
-                <div onClick={idHandler} className={clsString} key={index}><span>{item.text}</span></div>
+                <NavLink to={item.link} onClick={idHandler} className={clsString} key={index}><span>{item.text}</span></NavLink>
             );
         });
         return menu;
     };
     return(
         <div className={"topbar-main-container"}>
-            <div className={"topbar-logo-container"}>
+            <NavLink to = '/' className={"topbar-logo-container"}>
                 <span>BoxStore</span>
-            </div>
+            </NavLink>
             <div className={"topbar-menu-container"}>
                 {rendermenu()}
             </div>

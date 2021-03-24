@@ -1,0 +1,27 @@
+@import "../base/styling";
+
+.contact{
+  &-form-container{
+    padding: 8rem 8rem 2rem;
+  }
+  &-input{
+    padding: 1rem 0;
+    input{
+      height: 4rem;
+    }
+  }
+  &-description{
+    input{
+      height: 12rem;
+    }
+  }
+  &-submit{
+    margin: 3rem auto !important;
+    @include button(25rem,3.5rem,$beta-color,#fff,1.8rem);
+  }
+}
+.ui.form .field>label{
+  padding: 0.5rem 1rem;
+  font-size: 1.6rem;
+  color: $alpha-color;
+}
