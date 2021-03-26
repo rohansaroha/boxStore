@@ -9,7 +9,7 @@ const HeroComponent = () => {
           <h1>
             <span className={"alpha resize"}>B</span>ox   <span className={"alpha"}>S</span>tore
           </h1>
-          <h2>BoxUp offers high- quality, custom-printed boxes at an empowering new level of affordability.
+          <h2>BoxUp offers high- quality, custom-printed boxes at Online.
           </h2>
           <div className='hero-button-container'>
             <div className='hero-button'>

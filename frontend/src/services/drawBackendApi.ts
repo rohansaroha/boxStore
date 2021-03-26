@@ -48,4 +48,8 @@ export class drawBackendApi{
         let url = baseUrl + `/projects/${standardId}/layers/${layer}/preview`;
         return axios.get(url, { ...config, responseType: "arraybuffer" });
     }
+    static async updateCanvas(standardId:string){
+        let url = baseUrl + `/projects/${standardId}/preview`;
+        return axios.get(url, { ...config, responseType: "arraybuffer" });
+    }
 }

@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import  "../../assets/scss/components/design/designSideBar.scss";
 import { Form, Input } from "semantic-ui-react";
 import { drawBackendApi } from "../../services/drawBackendApi";
 import { toast } from "react-toastify";
+import { CanvasContext } from "../../hooks/CanvasContext";
 
 const DesignSideBar = ()=>{
     const [materialName,setMaterialName] = useState("");
     const [length,setLength] = useState(null);
     const [width,setWidth] = useState(null);
     const [depth,setDepth] = useState(null);
+    const [canvasImgSrc,setCanvasImgSrc] = useContext(CanvasContext);
     const materialOptions = [
         { key: "m", text: "350 GSM White board", value: "350GSM" },
         { key: "l", text: "Corrugated|B Flute", value: "Corrugated|B Flute" },
@@ -22,7 +24,18 @@ const DesignSideBar = ()=>{
         let rawValues = { materialName,length,width,depth };
         drawBackendApi.drawImage("267","4","165",rawValues)
             .then((res)=>{
-                console.log(res.data);
+                let canvasPath = res.data.Links.Preview;
+                let standardId = canvasPath.split("/")[4];
+                console.log(standardId);
+                drawBackendApi.updateCanvas(standardId)
+                    .then((res)=>{
+                        const bytes = new Uint8Array(res.data);
+                        const blob = new Blob( [ bytes ], { type: "image/jpeg" } );
+                        const urlCreator = window.URL || window.webkitURL;
+                        const imageUrl = urlCreator.createObjectURL( blob );
+                        setCanvasImgSrc(imageUrl);
+                        console.log(canvasImgSrc);
+                    });
             })
             .catch((err)=>{
                 toast.error(err);
