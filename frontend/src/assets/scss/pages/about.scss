@@ -17,6 +17,22 @@
     span{
       @include fontStyle(1.5rem,normal,#5e5e5e);
     }
+    &-img{
+      text-align: center;
+      padding-bottom: 5rem ;
+      img{
+        width: 50rem;
+        height: 35rem;
+        padding: 1rem 0;
+      }
+      &-footer{
+        display: flex;
+        justify-content: center;
+        span{
+          @include fontStyle(1.5rem,normal,#5e5e5e);
+        }
+      }
+    }
   }
   &-bold{
     color: #3b3a3a !important;
@@ -35,8 +51,13 @@
       align-items: center;
       background-color: #d8d8d8;
       border-radius: 50%;
-      height: 12rem;
-      width: 12rem;
+      height: 14rem;
+      width: 14rem;
+      img{
+        height: 14rem;
+        width: 14rem;
+        border-radius: 50%;
+      }
     }
     &-name{
       padding: 1rem 0 0.5rem;

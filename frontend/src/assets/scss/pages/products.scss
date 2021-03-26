@@ -1,0 +1,22 @@
+@import "../base/styling";
+
+.product{
+  &-container{
+    padding: 3rem 8rem!important;
+  }
+  &-card{
+    height: 20rem;
+    :hover{
+      transform: scale(1.05);
+      transition: ease;
+    }
+  }
+}
+.ui.card>.content>.header:not(.ui), .ui.cards>.card>.content>.header:not(.ui){
+  @include fontStyle(2.7rem,500,#5e5e5e);
+}
+.ui.card>.content, .ui.cards>.card>.content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

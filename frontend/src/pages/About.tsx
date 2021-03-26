@@ -2,6 +2,11 @@ import React from "react";
 import Layout from "../components/base/Layout";
 import DetailsCard from "../components/base/DetailsCard";
 import "../assets/scss/pages/about.scss";
+import profile1 from "../assets/img/profile1.png";
+import profile2 from "../assets/img/profile2.png";
+import profile3 from "../assets/img/profile3.png";
+import profile4 from "../assets/img/profile4.png";
+import aboutImg from "../assets/img/aboutusImg.png";
 
 const About = ()=>{
     return (
@@ -17,13 +22,19 @@ const About = ()=>{
                         We Manufacturers of all kinds of <span className='al-bold'>Manual & Laser Dies For Card Board Boxes, Corrugated Carton, Label, Cuff, Collar & Ladies Suit Gala Cutting, Wedding Cards & Boxes, Gaskets, Blister Cutting, Tags Dies Etc.</span>. We manufacture these products incorporating genuine grade of imported materials, which is specialized for die making. Prior to using them, a separate team of quality analysts stringently test them. This enables us to ensure adherence to international Quality Standards. In addition, we also provide services of Laser cutting, catering to several industries of Architect industry, Automobile Industry, computer Industry and Cosmetic Industry & all sorts of wood works. With real-time experience and full grasp of the market functionality, we have been able to carry our business in a prolific way. We work with full transparency, and serve clients in a cost-effective way. We have been able to meet customer’s varied needs by providing products that are widely appreciated for their varied associated attributes.<span className='al-bold'> Under the Strict Direction of “Mr. Roshan Lal, Mr.Ajay Kumar, Mr. Ravi Kumar & Mr. Krishan Kumar”, we have achieved an alleged name in the Die Making Industry.</span>
                     </span>
                 </div>
+                <div className='al-content-img'>
+                    <img src={aboutImg} alt=''/>
+                    <div className='al-content-img-footer'>
+                        <span>DEPTH OF OUR EXPERIENCE, KNOWLEDGE & FLAWLESS PERFORMANCE SINCE 1978:</span>
+                    </div>
+                </div>
             </div>
             <div className='al-team-container'>
                 <h1 className='al-header'>OUR TEAM</h1>
                 <div className='al-profile-container'>
                     <div className='al-profile'>
                         <div className='al-profile-image'>
-                            <img src='' alt=''/>
+                            <img src={profile1} alt=''/>
                         </div>
                         <div className='al-profile-name'>
                             <span>Mr. ROSHAN LAL</span>
@@ -37,7 +48,7 @@ const About = ()=>{
                     </div>
                     <div className='al-profile'>
                         <div className='al-profile-image'>
-                            <img src='' alt=''/>
+                            <img src={profile2} alt=''/>
                         </div>
                         <div className='al-profile-name'>
                             <span>Mr.AJAY KUMAR</span>
@@ -51,7 +62,7 @@ const About = ()=>{
                     </div>
                     <div className='al-profile'>
                         <div className='al-profile-image'>
-                            <img src='' alt=''/>
+                            <img src={profile3} alt=''/>
                         </div>
                         <div className='al-profile-name'>
                             <span>Mr. RAVI KUMAR</span>
@@ -65,7 +76,7 @@ const About = ()=>{
                     </div>
                     <div className='al-profile'>
                         <div className='al-profile-image'>
-                            <img src='' alt=''/>
+                            <img src={profile4} alt=''/>
                         </div>
                         <div className='al-profile-name'>
                             <span>Mr. KRISHAN KUMAR</span>

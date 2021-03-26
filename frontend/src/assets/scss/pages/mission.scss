@@ -1,0 +1,17 @@
+@import "../base/styling";
+
+.mission-container{
+  text-align: center;
+  padding: 8rem 0;
+  h1{
+    @include fontStyle(4rem,500,#5e5e5e)
+  }
+  h2{
+    text-align: initial;
+    padding-left: 40rem;
+    @include fontStyle(3.5rem,500,#5e5e5e);
+  }
+  &-resize{
+    font-size: 5rem;
+  }
+}
