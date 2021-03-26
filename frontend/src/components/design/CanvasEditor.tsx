@@ -43,7 +43,7 @@ const CanvasEditor = ()=>{
                         name: "SampleImage",
                     },
                     theme: myTheme,
-                    menu: ["shape", "filter","text"],
+                    menu: ["crop", "flip", "rotate", "draw", "shape", "icon", "text", "mask", "filter"],
                     initMenu: "filter",
                     uiSize: {
                         width: "1200px",

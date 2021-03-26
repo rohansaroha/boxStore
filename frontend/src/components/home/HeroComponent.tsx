@@ -4,7 +4,7 @@ import { Icon } from "semantic-ui-react";
 
 const HeroComponent = () => {
   return (
-    <div className={"hero-container"}>
+    <div className="hero-container">
         <div className={"text-container"}>
           <h1>
             <span className={"alpha resize"}>B</span>ox   <span className={"alpha"}>S</span>tore
