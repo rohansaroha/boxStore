@@ -10,10 +10,10 @@
   }
   &-logo{
     &-container{
-      span{
+      img{
         padding-left: 2rem;
-        @include fontStyle(2.8rem,500,$alpha-color);
-        letter-spacing: 1.5px;
+        height: 4.5rem;
+        width: 15rem;
       }
     }
   }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "../assets/scss/components/topBar.scss";
+import logo from "../assets/img/G&G_Logo.png";
 
 const TopBar = ()=>{
     const [id,selectedId] = useState(0);
@@ -11,7 +12,6 @@ const TopBar = ()=>{
             let clsString = "topbar-menu-item";
             if(id === item.id){
                 // eslint-disable-next-line no-console
-                console.log(item);
                 clsString = "topbar-menu-item-selected";
             }
             const idHandler = ()=>{
@@ -26,7 +26,7 @@ const TopBar = ()=>{
     return(
         <div className={"topbar-main-container"}>
             <NavLink to = '/' className={"topbar-logo-container"}>
-                <span>BoxStore</span>
+                <img src={logo} alt='G&G Logo'/>
             </NavLink>
             <div className={"topbar-menu-container"}>
                 {rendermenu()}
