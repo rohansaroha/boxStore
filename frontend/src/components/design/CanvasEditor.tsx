@@ -1,10 +1,14 @@
-import React, { createContext, useContext, useEffect, useReducer, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "tui-image-editor/dist/tui-image-editor.css";
 // @ts-ignore
-import ImageEditor from "@toast-ui/react-image-editor";
-import { drawBackendApi } from "../../services/drawBackendApi";
+import CanvasTest from "./CanvasTest";
 
 const CanvasEditor = (props:any)=>{
+    const [showImageEditor, setShowImageEditor] = useState(true);
+    const renderImageEditor = () => {
+        console.log("Setting iamge editor", props.canvasImgSrc);
+        setShowImageEditor(true);
+    };
     // @ts-ignore
     useEffect(()=>{
         //to remove tui-header-logo
@@ -12,42 +16,18 @@ const CanvasEditor = (props:any)=>{
         if(imageEditorLogo[0]){
             imageEditorLogo[0].remove();
         }
-        console.log("props changed");
-    },props.canvasImgSrc);
+        setShowImageEditor(false);
 
-    const myTheme = {
-        "menu.backgroundColor": "white",
-        "common.backgroundColor": "white",
-        "downloadButton.backgroundColor": "white",
-        "downloadButton.borderColor": "white",
-        "downloadButton.color": "black"
-    };
+        console.log("props changed");
+        setTimeout(() => {
+            renderImageEditor();
+        }, 100);
+    },[props.canvasImgSrc]);
+
     return (
         <div>
-            <img src={props.canvasImgSrc}/>
-            <ImageEditor
-                includeUI={{
-                    loadImage: {
-                        path: props.canvasImgSrc,
-                        name: "SampleImage",
-                    },
-                    theme: myTheme,
-                    menu: ["crop", "flip", "rotate", "draw", "shape", "icon", "text", "mask", "filter"],
-                    initMenu: "filter",
-                    uiSize: {
-                        width: "1200px",
-                        height: "700px",
-                    },
-                    menuBarPosition: "bottom",
-                }}
-                cssMaxHeight={500}
-                cssMaxWidth={700}
-                selectionStyle={{
-                    cornerSize: 20,
-                    rotatingPointOffset: 70,
-                }}
-                usageStatistics={true}
-            />
+            {showImageEditor ?
+            <CanvasTest imageSrc={props.canvasImgSrc}/> : "Loading" }
         </div>
     );
 };
