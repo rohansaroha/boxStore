@@ -12,10 +12,6 @@ const CanvasEditor = (props:any)=>{
     // @ts-ignore
     useEffect(()=>{
         //to remove tui-header-logo
-        let imageEditorLogo = document.getElementsByClassName("tui-image-editor-header-logo");
-        if(imageEditorLogo[0]){
-            imageEditorLogo[0].remove();
-        }
         setShowImageEditor(false);
 
         console.log("props changed");
