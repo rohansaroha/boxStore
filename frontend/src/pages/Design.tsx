@@ -1,11 +1,36 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import DesignSideBar from "../components/design/DesignSideBar";
 import Layout from "../components/base/Layout";
 import "../assets/scss/pages/design.scss";
 import { PreviewCanvas } from "../components/design/PreviewCanvas";
 import CanvasEditor from "../components/design/CanvasEditor";
+import { CanvasContext } from "../hooks/CanvasContext";
+import { drawBackendApi } from "../services/drawBackendApi";
 
 const Design = ()=>{
+    // @ts-ignore
+    const [canvasImgSrc,setCanvasImgSrc] = useContext(CanvasContext);
+    const [loader,setLoader] = useState<boolean>(true);
+    useEffect(()=>{
+        //to remove tui-header-logo
+        if(!canvasImgSrc){
+            drawBackendApi.drawCanvas("964","3849")
+                .then((res)=>{
+                    const bytes = new Uint8Array(res.data);
+                    const blob = new Blob( [ bytes ], { type: "image/jpeg" } );
+                    const urlCreator = window.URL || window.webkitURL;
+                    const imageUrl = urlCreator.createObjectURL( blob );
+                    setCanvasImgSrc(imageUrl);
+                    setLoader(false);
+                })
+                .catch((err)=>{
+                    console.log(err);
+                });
+        }
+        else{
+            setLoader(false);
+        }
+    },[]);
 
     return(
         <Layout>
@@ -15,7 +40,10 @@ const Design = ()=>{
                         <DesignSideBar/>
                     </div>
                     <div className={"design-content-primary"}>
-                        <CanvasEditor/>
+                        {loader
+                            ? (<div>loading</div>)
+                            : (<CanvasEditor canvasImgSrc={canvasImgSrc}/>)
+                        }
                     </div>
                 </div>
                 <div className="design-content-preview">

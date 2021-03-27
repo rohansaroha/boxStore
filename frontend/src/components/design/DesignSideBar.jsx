@@ -7,10 +7,10 @@ import { CanvasContext } from "../../hooks/CanvasContext";
 
 const DesignSideBar = ()=>{
     const [materialName,setMaterialName] = useState("");
-    const [length,setLength] = useState(null);
-    const [width,setWidth] = useState(null);
-    const [depth,setDepth] = useState(null);
-    const [canvasImgSrc,setCanvasImgSrc] = useContext(CanvasContext);
+    const [length,setLength] = useState(10);
+    const [width,setWidth] = useState(10);
+    const [depth,setDepth] = useState(12);
+    const [,setCanvasImgSrc] = useContext(CanvasContext);
     const materialOptions = [
         { key: "m", text: "350 GSM White board", value: "350GSM" },
         { key: "l", text: "Corrugated|B Flute", value: "Corrugated|B Flute" },
@@ -26,7 +26,6 @@ const DesignSideBar = ()=>{
             .then((res)=>{
                 let canvasPath = res.data.Links.Preview;
                 let standardId = canvasPath.split("/")[4];
-                console.log(standardId);
                 drawBackendApi.updateCanvas(standardId)
                     .then((res)=>{
                         const bytes = new Uint8Array(res.data);
@@ -34,7 +33,6 @@ const DesignSideBar = ()=>{
                         const urlCreator = window.URL || window.webkitURL;
                         const imageUrl = urlCreator.createObjectURL( blob );
                         setCanvasImgSrc(imageUrl);
-                        console.log(canvasImgSrc);
                     });
             })
             .catch((err)=>{

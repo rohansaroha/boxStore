@@ -1,31 +1,19 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useReducer, useRef, useState } from "react";
 import "tui-image-editor/dist/tui-image-editor.css";
 // @ts-ignore
 import ImageEditor from "@toast-ui/react-image-editor";
-import { CanvasContext } from "../../hooks/CanvasContext";
 import { drawBackendApi } from "../../services/drawBackendApi";
 
-const CanvasEditor = ()=>{
+const CanvasEditor = (props:any)=>{
     // @ts-ignore
-    const [canvasImgSrc,setCanvasImgSrc] = useContext(CanvasContext);
-
     useEffect(()=>{
         //to remove tui-header-logo
         let imageEditorLogo = document.getElementsByClassName("tui-image-editor-header-logo");
-        imageEditorLogo[0].remove();
-        console.log(canvasImgSrc);
-        drawBackendApi.drawCanvas("964","3849")
-            .then((res)=>{
-                const bytes = new Uint8Array(res.data);
-                const blob = new Blob( [ bytes ], { type: "image/jpeg" } );
-                const urlCreator = window.URL || window.webkitURL;
-                const imageUrl = urlCreator.createObjectURL( blob );
-                setCanvasImgSrc(imageUrl);
-            })
-            .catch((err)=>{
-                console.log(err);
-            });
-    },[]);
+        if(imageEditorLogo[0]){
+            imageEditorLogo[0].remove();
+        }
+        console.log("props changed");
+    },props.canvasImgSrc);
 
     const myTheme = {
         "menu.backgroundColor": "white",
@@ -36,10 +24,11 @@ const CanvasEditor = ()=>{
     };
     return (
         <div>
+            <img src={props.canvasImgSrc}/>
             <ImageEditor
                 includeUI={{
                     loadImage: {
-                        path: canvasImgSrc,
+                        path: props.canvasImgSrc,
                         name: "SampleImage",
                     },
                     theme: myTheme,
