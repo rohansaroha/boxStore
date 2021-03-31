@@ -9,19 +9,6 @@ interface IRawValuesProps{
     depth : number
 }
 
-// interface IDrawValuesData{
-//     MaterialName:string,
-//     Metric:boolean,
-//     VariableSettings:{
-//         Groups:[
-//             {
-//                 "Name": string,
-//                 "Variables": Array<{ "Name": string, "Value": number }>
-//             }
-//         ]
-//     }
-// }
-
 export class drawBackendApi{
     static async drawImage(standardId:string,customerId:string,folderId:string,rawValues:IRawValuesProps){
         let drawValuesData:any = {};
@@ -48,8 +35,21 @@ export class drawBackendApi{
         let url = baseUrl + `/projects/${standardId}/layers/${layer}/preview`;
         return axios.get(url, { ...config, responseType: "arraybuffer" });
     }
+
     static async updateCanvas(standardId:string){
         let url = baseUrl + `/projects/${standardId}/preview`;
         return axios.get(url, { ...config, responseType: "arraybuffer" });
+    }
+
+    static async Canvas_3D(){
+        let data:any = {};
+        data["ProjectKey"] = 964;
+        data["DesignLayerKey"] = 3849;
+        data["PaletteSettingName"] = "<Default>";
+        data["BoardSettingName"] = "Corrugated|Corrugated K/K";
+        data["BasePointX"] = 150;
+        data["BasePointY"] = 200;
+        let url = baseUrl + "/scripts?name=Sample-Create-3D-Layer";
+        return axios.post(url,data,config);
     }
 }

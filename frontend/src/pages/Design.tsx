@@ -13,6 +13,13 @@ const Design = ()=>{
     const [loader,setLoader] = useState<boolean>(true);
     useEffect(()=>{
         //to remove tui-header-logo
+
+        drawBackendApi.Canvas_3D()
+            .then((res)=>{
+                console.log("response for 3d preview api");
+                console.log(res);
+            });
+
         if(!canvasImgSrc){
             drawBackendApi.drawCanvas("964","3849")
                 .then((res)=>{
