@@ -52,4 +52,28 @@ export class drawBackendApi{
         let url = baseUrl + "/scripts?name=Sample-Create-3D-Layer";
         return axios.post(url,data,config);
     }
+    static async canvas_3D_second(projectId: string, layerId: string, format: string, settingsId: string) {
+        const url = baseUrl + `/projects/${projectId}/layers/${layerId}/file?fileFormat=${format}&importexportSettingId=${settingsId}`;
+        return axios.get(url,config);
+    }
+
+    static async getLayout() {
+        const url = baseUrl + "/scripts?name=Sample-Create-Layout-2";
+        const body = {
+            "ProjectKey": 952,
+            "DesignLayerKey": 3837,
+            "LayoutMachineSheetSettingName": "Bobst|Bobst SP 102 E",
+            "LayoutPatternSettingName": "Automatic",
+            "LayoutPaletteSettingName": "Fitted only",
+            "SheetX": 750,
+            "SheetY": 600,
+            "Gutter": 0
+        };
+        return axios.post(url, body, config);
+    }
+
+    static async previewLayout(previewId: string) {
+        const url = baseUrl + "/projects/952/layers/4009/preview";
+        return axios.get(url, { ...config, responseType: "arraybuffer" });
+    }
 }
