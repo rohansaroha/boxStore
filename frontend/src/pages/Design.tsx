@@ -19,8 +19,11 @@ const Design = ()=>{
         //         console.log("response for 3d preview api");
         //         console.log(res);
         //     });
-
+        //Todo use this id to make the api call.
+        const id = window.location.pathname.split("/")[2];
+        console.log(id);
         if(!canvasImgSrc){
+            //             drawBackendApi.drawCanvas("964","3849")
             drawBackendApi.drawCanvas("964","3849")
                 .then((res)=>{
                     const bytes = new Uint8Array(res.data);
