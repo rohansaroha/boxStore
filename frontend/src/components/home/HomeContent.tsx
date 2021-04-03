@@ -18,7 +18,7 @@ const HomeContent = ()=>{
         const boxArr = [];
         for (let i = 0;i < 4;i++){
             const imgArr = [imgData.imgSrc,imgData.imgSrc2,imgData.imgSrc3,imgData.imgSrc4];
-            const standardIds = ["0427", "0447", "0701", "0713"];
+            const standardIds = ["263", "244", "338", "330"];
             boxArr.push(
                 <Card className='seller-box' key={i}>
                     <div className="seller-box-img-container">

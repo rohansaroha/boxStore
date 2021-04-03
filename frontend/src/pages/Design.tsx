@@ -18,28 +18,25 @@ const Design = ()=>{
             .then((res)=>{
                 console.log("response for 3d preview api : ",res.data);
             });
-
-        if(!canvasImgSrc){
             //standard id
             const standardId = window.location.href.split("/")[4];
             console.log("this is the standard id : ",standardId);
 
-            drawBackendApi.drawCanvas("964","3849")
+            drawBackendApi.drawImage(standardId,"4","165",{ length: 18,width: 15,depth: 20,materialName: "Corrugated|B Flute" })
                 .then((res)=>{
-                    const bytes = new Uint8Array(res.data);
-                    const blob = new Blob( [ bytes ], { type: "image/jpeg" } );
-                    const urlCreator = window.URL || window.webkitURL;
-                    const imageUrl = urlCreator.createObjectURL( blob );
-                    setCanvasImgSrc(imageUrl);
-                    setLoader(false);
-                })
-                .catch((err)=>{
-                    console.log(err);
+                    drawBackendApi.updateCanvas(res.data.Layers[0].Preview)
+                        .then((res)=>{
+                            const bytes = new Uint8Array(res.data);
+                            const blob = new Blob( [ bytes ], { type: "image/jpeg" } );
+                            const urlCreator = window.URL || window.webkitURL;
+                            const imageUrl = urlCreator.createObjectURL( blob );
+                            setCanvasImgSrc(imageUrl);
+                            setLoader(false);
+                        })
+                        .catch((err)=>{
+                            console.log(err);
+                        });
                 });
-        }
-        else{
-            setLoader(false);
-        }
     },[]);
 
     return(
