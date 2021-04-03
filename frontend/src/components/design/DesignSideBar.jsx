@@ -7,9 +7,9 @@ import { CanvasContext } from "../../hooks/CanvasContext";
 
 const DesignSideBar = ()=>{
     const [materialName,setMaterialName] = useState("");
-    const [length,setLength] = useState(10);
-    const [width,setWidth] = useState(10);
-    const [depth,setDepth] = useState(12);
+    const [length,setLength] = useState(280);
+    const [width,setWidth] = useState(150);
+    const [depth,setDepth] = useState(120);
     const [layoutKey,setLayoutKey] = useState(null);
     const [,setCanvasImgSrc] = useContext(CanvasContext);
     const [LMSS,setLMSS] = useState("");
@@ -58,8 +58,9 @@ const DesignSideBar = ()=>{
 
     const drawApi = ()=>{
         let rawValues = { materialName,length,width,depth };
-        drawBackendApi.drawImage("267","4","165",rawValues)
+        drawBackendApi.drawImage("338","4","165",rawValues)
             .then((res)=>{
+                //Todo: Change this part.
                 let canvasPath = res.data.Links.Preview;
                 let standardId = canvasPath.split("/")[4];
                 drawBackendApi.updateCanvas(standardId)
