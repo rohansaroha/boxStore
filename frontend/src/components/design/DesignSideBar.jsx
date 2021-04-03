@@ -62,10 +62,7 @@ const DesignSideBar = ()=>{
         setLoader(true);
         drawBackendApi.drawImage("338","4","165",rawValues)
             .then((res)=>{
-                //Todo: Change this part.
-                let canvasPath = res.data.Links.Preview;
-                let standardId = canvasPath.split("/")[4];
-                drawBackendApi.updateCanvas(standardId)
+                drawBackendApi.updateCanvas(res.data.Layers[0].Preview)
                     .then((res)=>{
                         const bytes = new Uint8Array(res.data);
                         const blob = new Blob( [ bytes ], { type: "image/jpeg" } );

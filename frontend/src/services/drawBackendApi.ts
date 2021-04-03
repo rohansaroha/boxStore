@@ -43,8 +43,9 @@ export class drawBackendApi{
         return axios.get(url, { ...config, responseType: "arraybuffer" });
     }
 
-    static async updateCanvas(standardId:string){
-        let url = baseUrl + `/projects/${standardId}/preview`;
+    static async updateCanvas(canvasPath:string){
+        let url = "http://arden-nservice.net/" + canvasPath;
+        console.log(url);
         return axios.get(url, { ...config, responseType: "arraybuffer" });
     }
 
