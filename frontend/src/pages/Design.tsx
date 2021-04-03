@@ -12,18 +12,17 @@ const Design = ()=>{
     const [canvasImgSrc,setCanvasImgSrc] = useContext(CanvasContext);
     const [loader,setLoader] = useState<boolean>(true);
     useEffect(()=>{
-        //to remove tui-header-logo
 
-        // drawBackendApi.Canvas_3D()
-        //     .then((res)=>{
-        //         console.log("response for 3d preview api");
-        //         console.log(res);
-        //     });
-        //Todo use this id to make the api call.
-        const id = window.location.pathname.split("/")[2];
-        console.log(id);
+        drawBackendApi.Canvas_3D()
+            .then((res)=>{
+                console.log("response for 3d preview api : ",res.data);
+            });
+
         if(!canvasImgSrc){
-            //             drawBackendApi.drawCanvas("964","3849")
+            //standard id
+            const standardId = window.location.href.split("/")[4];
+            console.log("this is the standard id : ",standardId);
+
             drawBackendApi.drawCanvas("964","3849")
                 .then((res)=>{
                     const bytes = new Uint8Array(res.data);

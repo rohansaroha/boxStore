@@ -6,51 +6,54 @@ import { toast } from "react-toastify";
 import { CanvasContext } from "../../hooks/CanvasContext";
 
 const DesignSideBar = ()=>{
-    const C_LAYOUT_MACHINE_SHEET_SETTING_NAME = "LayoutMachineSheetSettingName";
-    const C_LAYOUT_PATTERN_SETTING_NAME = "LayoutMachineSheetSettingName";
-    const C_LAYOUT_PALETTE_SETTING_NAME = "LayoutPaletteSettingName";
-
     const [materialName,setMaterialName] = useState("");
     const [length,setLength] = useState(10);
     const [width,setWidth] = useState(10);
     const [depth,setDepth] = useState(12);
     const [layoutKey,setLayoutKey] = useState(null);
     const [,setCanvasImgSrc] = useContext(CanvasContext);
+    const [LMSS,setLMSS] = useState("");
+    const [LPatternS,setLPatternS] = useState("");
+    const [LPaletteS,setLPaletteS] = useState("");
+    const [sheetX,setSheetX] = useState("");
+    const [sheetY,setSheetY] = useState("");
+
+    //constants
     const materialOptions = [
         { key: "m", text: "350 GSM White board", value: "350GSM" },
         { key: "l", text: "Corrugated|B Flute", value: "Corrugated|B Flute" },
     ];
     const sheetSizeOptions = [
-        { key: "m", name: "sheetsize", text: "8X11 inches", value: "8X11", "data-props": JSON.stringify({ sheetX: 8, sheetY: 12 }) },
-        { key: "l", name: "sheetsize", text: "245mm * 350mm", value: "245mm", "data-props": JSON.stringify({ sheetX: 245, sheetY: 350 }) }
+        { key: "m", text: "8X11 inches", value: "8X11" },
+        { key: "l", text: "245mm * 350mm", value: "245X350" }
     ];
     const LayoutMachineSheetSettingName = [
-        { key: "m", name: C_LAYOUT_MACHINE_SHEET_SETTING_NAME, text: "Bobst COMMERCIAL 106", value: "8X11", "data-props": JSON.stringify({ sheetX: 8, sheetY: 12 }) },
-        { key: "a", name: "LayoutMachineSheetSettingName", text: "Bobst COMMERCIAL 106 LE", value: "245mm", "data-props": JSON.stringify({ sheetX: 8, sheetY: 12 }) },
-        { key: "b", name: "LayoutMachineSheetSettingName", text: "Bobst COMMERCIAL 106 LER", value: "245mm", "data-props": JSON.stringify({ sheetX: 8, sheetY: 12 }) },
-        { key: "c", name: "LayoutMachineSheetSettingName", text: "Bobst COMMERCIAL 106 PE", value: "245mm", "data-props": JSON.stringify({ sheetX: 8, sheetY: 12 }) },
-        { key: "d", name: "LayoutMachineSheetSettingName", text: "Bobst COMMERCIAL 106 PER", value: "245mm", "data-props": JSON.stringify({ sheetX: 8, sheetY: 12 }) },
-        { key: "e", name: "LayoutMachineSheetSettingName", text: "Bobst COMMERCIAL 145 PER", value: "245mm", "data-props": JSON.stringify({ sheetX: 8, sheetY: 12 }) },
-        { key: "f", name: "LayoutMachineSheetSettingName", text: "Bobst COMMERCIAL 76", value: "245mm", "data-props": JSON.stringify({ sheetX: 8, sheetY: 12 }) },
-        { key: "g", name: "LayoutMachineSheetSettingName", text: "Bobst COMMERCIAL 102", value: "245mm", "data-props": JSON.stringify({ sheetX: 8, sheetY: 12 }) },
+        { key: "m", text: "Bobst COMMERCIAL 106", value: "8X11" },
+        { key: "a", text: "Bobst COMMERCIAL 106 LE", value: "245mm" },
+        { key: "b", text: "Bobst COMMERCIAL 106 LER", value: "45mm" },
+        { key: "c", text: "Bobst COMMERCIAL 106 PE", value: "24mm" },
+        { key: "d", text: "Bobst COMMERCIAL 106 PER", value: "2245mm" },
+        { key: "e", text: "Bobst COMMERCIAL 145 PER", value: "22245mm" },
+        { key: "f", text: "Bobst COMMERCIAL 76", value: "1245mm" },
+        { key: "g", text: "Bobst COMMERCIAL 102", value: "24125mm" },
     ];
     const LayoutPatternSettingName = [
-        { key: "a", name: "LayoutPatternSettingName", text: "Interlock", value: "8X11", "data-props": JSON.stringify({ sheetX: 8, sheetY: 12 }) },
-        { key: "b", name: "LayoutPatternSettingName", text: "Automatic", value: "8X11","data-props": JSON.stringify({ sheetX: 8, sheetY: 12 }) },
-        { key: "c", name: "LayoutPatternSettingName", text: "No Rotation", value: "8X11","data-props": JSON.stringify({ sheetX: 8, sheetY: 12 }) },
-        { key: "d", name: "LayoutPatternSettingName", text: "End To End", value: "8X11","data-props": JSON.stringify({ sheetX: 8, sheetY: 12 }) },
-        { key: "e", name: "LayoutPatternSettingName", text: "Shift", value: "8X11","data-props": JSON.stringify({ sheetX: 8, sheetY: 12 }) },
-        { key: "f", name: "LayoutPatternSettingName", text: "Skillet", value: "8X11", "data-props": JSON.stringify({ sheetX: 8, sheetY: 12 }) },
-        { key: "g", name: "LayoutPatternSettingName", text: "Standard", value: "8X11","data-props": JSON.stringify({ sheetX: 8, sheetY: 12 }) },
-        { key: "h", name: "LayoutPatternSettingName", text: "Tapered", value: "8X11","data-props": JSON.stringify({ sheetX: 8, sheetY: 12 }) }
+        { key: "a", text: "Interlock", value: "8X12" },
+        { key: "b", text: "Automatic", value: "8X13" },
+        { key: "c", text: "No Rotation", value: "8X21" },
+        { key: "d", text: "End To End", value: "8X111" },
+        { key: "e", text: "Shift", value: "8X1121" },
+        { key: "f", text: "Skillet", value: "8X12311" },
+        { key: "g", text: "Standard", value: "8X161" },
+        { key: "h", text: "Tapered", value: "8X119" }
     ];
 
     const LayoutPaletteSettingName = [
-        { key: "a", name: "LayoutPaletteSettingName", text: "Fitted Only", value: "8X11", "data-props": JSON.stringify({ sheetX: 8, sheetY: 12 }) },
-        { key: "b", name: "LayoutPaletteSettingName", text: "Fitted and Stock", value: "8X11", "data-props": JSON.stringify({ sheetX: 8, sheetY: 12 }) },
-        { key: "c", name: "LayoutPaletteSettingName", text: "Fitted with Print", value: "8X11","data-props": JSON.stringify({ sheetX: 8, sheetY: 12 }) },
-        { key: "d", name: "LayoutPaletteSettingName", text: "Stock Only", value: "8X11","data-props": JSON.stringify({ sheetX: 8, sheetY: 12 }) },
-        { key: "e", name: "LayoutPaletteSettingName", text: "None", value: "245mm","data-props": JSON.stringify({ sheetX: 8, sheetY: 12 }) }
+        { key: "a", text: "Fitted Only", value: "8X118" },
+        { key: "b", text: "Fitted and Stock", value: "8X171" },
+        { key: "c", text: "Fitted with Print", value: "8X161" },
+        { key: "d", text: "Stock Only", value: "8X151" },
+        { key: "e", text: "None", value: "2445mm" }
     ];
 
     const drawApi = ()=>{
@@ -74,15 +77,15 @@ const DesignSideBar = ()=>{
         ;
     };
     const layoutClickHandler = async () => {
+        const rawLayoutValues  = { LMSS,LPaletteS,LPatternS,sheetX,sheetY };
         try {
-            //Todo wire this up.
-            const res = await drawBackendApi.getLayout();
+            const res = await drawBackendApi.getLayout(rawLayoutValues);
             setLayoutKey(res.data);
-            console.log(res);
-            const res2 = await drawBackendApi.previewLayout(layoutKey);
+            // console.log(res);
+            const layout = await drawBackendApi.previewLayout(layoutKey);
             console.log("img is");
-            console.log(res2);
-            const bytes = new Uint8Array(res.data);
+            console.log(res);
+            const bytes = new Uint8Array(layout.data);
             const blob = new Blob( [ bytes ], { type: "image/jpeg" } );
             const urlCreator = window.URL || window.webkitURL;
             const imageUrl = urlCreator.createObjectURL( blob );
@@ -92,16 +95,6 @@ const DesignSideBar = ()=>{
             console.log("Error in layout handler");
         }
     };
-    const selectHandler = (e) => {
-        console.log(JSON.parse(e.target.getAttribute("data-props")));
-        console.log(e.target.getAttribute("name"));
-        console.log(e.target.textContent);
-        const name = e.target.getAttribute("name");
-        if(e.target.textContent === C_LAYOUT_MACHINE_SHEET_SETTING_NAME) {
-
-        }
-    };
-
     return(
         <div className='sidebar-item-container'>
             <div>
@@ -121,10 +114,29 @@ const DesignSideBar = ()=>{
                 </div>
             </div>
             <div>
-                <Form.Select className={"sidebar-input"} options={sheetSizeOptions} placeholder='SheetSize' onChange={e => selectHandler(e)}/>
-                <Form.Select className={"sidebar-input"} options={LayoutMachineSheetSettingName} placeholder='Layout Machine Sheet Setting' />
-                <Form.Select className={"sidebar-input"} options={LayoutPatternSettingName} placeholder='Layout Pattern Setting' />
-                <Form.Select className={"sidebar-input"} options={LayoutPaletteSettingName} placeholder='Layout Palette Setting' />
+                <Form.Select onChange={(e,{ value })=> {
+                    const data = value.split("X");
+                    setSheetX(data[0]);
+                    setSheetY(data[1]);
+                }}
+                             className={"sidebar-input"}
+                              options={sheetSizeOptions}
+                              placeholder='SheetSize' />
+
+                <Form.Select onChange={(e)=> setLMSS(e.currentTarget.textContent)}
+                             className={"sidebar-input"}
+                             options={LayoutMachineSheetSettingName}
+                             placeholder='Layout Machine Sheet Setting' />
+
+                <Form.Select onChange={(e)=>setLPatternS(e.currentTarget.textContent)}
+                             className={"sidebar-input"}
+                             options={LayoutPatternSettingName}
+                             placeholder='Layout Pattern Setting' />
+
+                <Form.Select onChange={(e)=>setLPaletteS(e.currentTarget.textContent)}
+                             className={"sidebar-input"}
+                             options={LayoutPaletteSettingName}
+                             placeholder='Layout Palette Setting' />
             </div>
             <div className={"sidebar-buttons"}>
                 <div className={"sidebar-button"} onClick={layoutClickHandler}>

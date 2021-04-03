@@ -8,6 +8,13 @@ interface IRawValuesProps{
     width : number,
     depth : number
 }
+interface IRawLayoutValues{
+    LMSS:string,
+    LPaletteS:string,
+    LPatternS:string,
+    sheetX:string,
+    sheetY:string
+}
 
 export class drawBackendApi{
     static async drawImage(standardId:string,customerId:string,folderId:string,rawValues:IRawValuesProps){
@@ -57,18 +64,20 @@ export class drawBackendApi{
         return axios.get(url,config);
     }
 
-    static async getLayout() {
+    static async getLayout(rawLayoutValues:IRawLayoutValues) {
         const url = baseUrl + "/scripts?name=Sample-Create-Layout-2";
+        console.log("raw values",rawLayoutValues);
         const body = {
             "ProjectKey": 952,
             "DesignLayerKey": 3837,
-            "LayoutMachineSheetSettingName": "Bobst|Bobst SP 102 E",
-            "LayoutPatternSettingName": "Automatic",
-            "LayoutPaletteSettingName": "Fitted only",
-            "SheetX": 750,
-            "SheetY": 600,
+            "LayoutMachineSheetSettingName": rawLayoutValues.LMSS,
+            "LayoutPatternSettingName": rawLayoutValues.LPaletteS,
+            "LayoutPaletteSettingName": rawLayoutValues.LPaletteS,
+            "SheetX": rawLayoutValues.sheetX,
+            "SheetY": rawLayoutValues.sheetY,
             "Gutter": 0
         };
+
         return axios.post(url, body, config);
     }
 

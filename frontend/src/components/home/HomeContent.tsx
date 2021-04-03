@@ -1,15 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Card, Image, Reveal } from "semantic-ui-react";
 import "../../assets/scss/components/home/homeContent.scss";
 import { NavLink } from "react-router-dom";
-import { ImgContext } from "../../hooks/ImgContext";
 import Img1 from ".././../assets/img/F0427(263).jpeg";
 import Img2 from ".././../assets/img/F0447(244).jpeg";
 import Img3 from ".././../assets/img/F0701(338).jpeg";
 import Img4 from ".././../assets/img/F0713(330).jpeg";
 
 const HomeContent = ()=>{
-    // const imgData = useContext(ImgContext);
     const imgData = {
         imgSrc: Img1,
         imgSrc2: Img2,
@@ -49,7 +47,6 @@ const HomeContent = ()=>{
                             <div className="seller-box-price-bold"><span>2520000</span></div>
                         </div>
                     </div>
-                    {/*<NavLink to = "/design/0427" className="seller-box-button"><span>Design</span></NavLink>*/}
                     <NavLink to={`/design/${standardIds[i]}`} className="seller-box-button"><span>Design</span></NavLink>
                 </Card>
             );

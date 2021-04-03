@@ -6,15 +6,12 @@ import CanvasTest from "./CanvasTest";
 const CanvasEditor = (props:any)=>{
     const [showImageEditor, setShowImageEditor] = useState(true);
     const renderImageEditor = () => {
-        console.log("Setting iamge editor", props.canvasImgSrc);
         setShowImageEditor(true);
     };
     // @ts-ignore
     useEffect(()=>{
         //to remove tui-header-logo
         setShowImageEditor(false);
-
-        console.log("props changed");
         setTimeout(() => {
             renderImageEditor();
         }, 100);
