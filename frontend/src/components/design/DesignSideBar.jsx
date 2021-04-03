@@ -4,6 +4,7 @@ import { Form, Input } from "semantic-ui-react";
 import { drawBackendApi } from "../../services/drawBackendApi";
 import { toast } from "react-toastify";
 import { CanvasContext } from "../../hooks/CanvasContext";
+import { LoaderContext } from "../../hooks/LoaderContext";
 
 const DesignSideBar = ()=>{
     const [materialName,setMaterialName] = useState("");
@@ -17,7 +18,7 @@ const DesignSideBar = ()=>{
     const [LPaletteS,setLPaletteS] = useState("");
     const [sheetX,setSheetX] = useState("");
     const [sheetY,setSheetY] = useState("");
-
+    const [,setLoader] = useContext(LoaderContext);
     //constants
     const materialOptions = [
         { key: "m", text: "350 GSM White board", value: "350GSM" },
@@ -58,6 +59,7 @@ const DesignSideBar = ()=>{
 
     const drawApi = ()=>{
         let rawValues = { materialName,length,width,depth };
+        setLoader(true);
         drawBackendApi.drawImage("338","4","165",rawValues)
             .then((res)=>{
                 //Todo: Change this part.
@@ -70,6 +72,7 @@ const DesignSideBar = ()=>{
                         const urlCreator = window.URL || window.webkitURL;
                         const imageUrl = urlCreator.createObjectURL( blob );
                         setCanvasImgSrc(imageUrl);
+                        setLoader(false);
                     });
             })
             .catch((err)=>{
@@ -79,6 +82,7 @@ const DesignSideBar = ()=>{
     };
     const layoutClickHandler = async () => {
         const rawLayoutValues  = { LMSS,LPaletteS,LPatternS,sheetX,sheetY };
+        setLoader(true);
         try {
             const res = await drawBackendApi.getLayout(rawLayoutValues);
             setLayoutKey(res.data);
@@ -91,6 +95,8 @@ const DesignSideBar = ()=>{
             const urlCreator = window.URL || window.webkitURL;
             const imageUrl = urlCreator.createObjectURL( blob );
             setCanvasImgSrc(imageUrl);
+            setLoader(false);
+
         } catch (e) {
             console.log(e);
             console.log("Error in layout handler");

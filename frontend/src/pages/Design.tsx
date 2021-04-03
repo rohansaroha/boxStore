@@ -6,6 +6,7 @@ import { PreviewCanvas } from "../components/design/PreviewCanvas";
 import CanvasEditor from "../components/design/CanvasEditor";
 import { CanvasContext } from "../hooks/CanvasContext";
 import { drawBackendApi } from "../services/drawBackendApi";
+import { LoadingScreen } from "../components/Loader";
 
 const Design = ()=>{
     // @ts-ignore
@@ -50,7 +51,7 @@ const Design = ()=>{
                     </div>
                     <div className={"design-content-primary"}>
                         {loader
-                            ? (<div>loading</div>)
+                            ? (<LoadingScreen/>)
                             : (<CanvasEditor canvasImgSrc={canvasImgSrc}/>)
                         }
                     </div>
