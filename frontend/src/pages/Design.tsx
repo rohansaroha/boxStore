@@ -12,6 +12,8 @@ const Design = ()=>{
     // @ts-ignore
     const [canvasImgSrc,setCanvasImgSrc] = useContext(CanvasContext);
     const [loader,setLoader] = useState<boolean>(true);
+    const [standardId,setStandardId] = useState<string>("");
+
     useEffect(()=>{
 
         drawBackendApi.Canvas_3D()
@@ -19,10 +21,11 @@ const Design = ()=>{
                 console.log("response for 3d preview api : ",res.data);
             });
             //standard id
-            const standardId = window.location.href.split("/")[4];
-            console.log("this is the standard id : ",standardId);
+            const dstandardId = window.location.href.split("/")[4];
+            setStandardId(dstandardId);
+            console.log("this is the standard id : ",dstandardId);
 
-            drawBackendApi.drawImage(standardId,"4","165",{ length: 18,width: 15,depth: 20,materialName: "Corrugated|B Flute" })
+            drawBackendApi.drawImage(dstandardId,"4","165",{ length: 18,width: 15,depth: 20,materialName: "Corrugated|B Flute" })
                 .then((res)=>{
                     drawBackendApi.updateCanvas(res.data.Layers[0].Preview)
                         .then((res)=>{
@@ -44,7 +47,7 @@ const Design = ()=>{
             <div className={"design-main-container"}>
                 <div className={"design-content-container"}>
                     <div className="design-sidebar-container">
-                        <DesignSideBar/>
+                        <DesignSideBar standardId={standardId}/>
                     </div>
                     <div className={"design-content-primary"}>
                         {loader

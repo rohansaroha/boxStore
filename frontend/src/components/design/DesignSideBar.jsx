@@ -5,8 +5,9 @@ import { drawBackendApi } from "../../services/drawBackendApi";
 import { toast } from "react-toastify";
 import { CanvasContext } from "../../hooks/CanvasContext";
 import { LoaderContext } from "../../hooks/LoaderContext";
+import PropTypes from "prop-types";
 
-const DesignSideBar = ()=>{
+const DesignSideBar = (props)=>{
     const [materialName,setMaterialName] = useState("");
     const [length,setLength] = useState(280);
     const [width,setWidth] = useState(150);
@@ -60,7 +61,7 @@ const DesignSideBar = ()=>{
     const drawApi = ()=>{
         let rawValues = { materialName,length,width,depth };
         setLoader(true);
-        drawBackendApi.drawImage("338","4","165",rawValues)
+        drawBackendApi.drawImage(props.standardId,"4","165",rawValues)
             .then((res)=>{
                 drawBackendApi.updateCanvas(res.data.Layers[0].Preview)
                     .then((res)=>{
@@ -81,19 +82,19 @@ const DesignSideBar = ()=>{
         const rawLayoutValues  = { LMSS,LPaletteS,LPatternS,sheetX,sheetY };
         setLoader(true);
         try {
-            const res = await drawBackendApi.getLayout(rawLayoutValues);
-            setLayoutKey(res.data);
-            // console.log(res);
-            const layout = await drawBackendApi.previewLayout(layoutKey);
-            console.log("img is");
-            console.log(res);
-            const bytes = new Uint8Array(layout.data);
-            const blob = new Blob( [ bytes ], { type: "image/jpeg" } );
-            const urlCreator = window.URL || window.webkitURL;
-            const imageUrl = urlCreator.createObjectURL( blob );
-            setCanvasImgSrc(imageUrl);
-            setLoader(false);
-
+            // eslint-disable-next-line no-unused-vars
+            const layoutApi = await drawBackendApi.getLayout(rawLayoutValues)
+                .then((res)=>{
+                    drawBackendApi.previewLayout(res.data)
+                        .then((res)=>{
+                            const bytes = new Uint8Array(res.data);
+                            const blob = new Blob( [ bytes ], { type: "image/jpeg" } );
+                            const urlCreator = window.URL || window.webkitURL;
+                            const imageUrl = urlCreator.createObjectURL( blob );
+                            setCanvasImgSrc(imageUrl);
+                            setLoader(false);
+                        });
+                });
         } catch (e) {
             console.log(e);
             console.log("Error in layout handler");
@@ -127,10 +128,10 @@ const DesignSideBar = ()=>{
                               options={sheetSizeOptions}
                               placeholder='SheetSize' />
 
-                <Form.Select onChange={(e)=> setLMSS(e.currentTarget.textContent)}
-                             className={"sidebar-input"}
-                             options={LayoutMachineSheetSettingName}
-                             placeholder='Layout Machine Sheet Setting' />
+                {/*<Form.Select onChange={(e)=> setLMSS(e.currentTarget.textContent)}*/}
+                {/*             className={"sidebar-input"}*/}
+                {/*             options={LayoutMachineSheetSettingName}*/}
+                {/*             placeholder='Layout Machine Sheet Setting' />*/}
 
                 <Form.Select onChange={(e)=>setLPatternS(e.currentTarget.textContent)}
                              className={"sidebar-input"}
@@ -152,5 +153,8 @@ const DesignSideBar = ()=>{
             </div>
         </div>
     );
+};
+DesignSideBar.propTypes = {
+    standardId: PropTypes.string
 };
 export default DesignSideBar;

@@ -71,11 +71,18 @@ export class drawBackendApi{
         const body = {
             "ProjectKey": 952,
             "DesignLayerKey": 3837,
-            "LayoutMachineSheetSettingName": rawLayoutValues.LMSS,
-            "LayoutPatternSettingName": rawLayoutValues.LPaletteS,
-            "LayoutPaletteSettingName": rawLayoutValues.LPaletteS,
-            "SheetX": rawLayoutValues.sheetX,
-            "SheetY": rawLayoutValues.sheetY,
+            //values
+            // "LayoutMachineSheetSettingName": rawLayoutValues.LMSS,
+            // "LayoutPatternSettingName": rawLayoutValues.LPaletteS,
+            // "LayoutPaletteSettingName": rawLayoutValues.LPaletteS,
+            // "SheetX": rawLayoutValues.sheetX,
+            // "SheetY": rawLayoutValues.sheetY,
+
+            "LayoutMachineSheetSettingName": "Bobst|Bobst EXPERTCUT 145 PER",
+            "LayoutPatternSettingName": "Automatic",
+            "LayoutPaletteSettingName": "Fitted only",
+            "SheetX": 750,
+            "SheetY": 600,
             "Gutter": 0
         };
 
@@ -83,7 +90,7 @@ export class drawBackendApi{
     }
 
     static async previewLayout(previewId: string) {
-        const url = baseUrl + "/projects/952/layers/4009/preview";
+        const url = baseUrl + `/projects/952/layers/${previewId}/preview`;
         return axios.get(url, { ...config, responseType: "arraybuffer" });
     }
 }
