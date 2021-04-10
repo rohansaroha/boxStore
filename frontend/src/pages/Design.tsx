@@ -16,10 +16,10 @@ const Design = ()=>{
 
     useEffect(()=>{
 
-        drawBackendApi.Canvas_3D()
-            .then((res)=>{
-                console.log("response for 3d preview api : ",res.data);
-            });
+        // drawBackendApi.Canvas_3D()
+        //     .then((res)=>{
+        //         console.log("response for 3d preview api : ",res.data);
+        //     });
             //standard id
             const dstandardId = window.location.href.split("/")[4];
             setStandardId(dstandardId);
