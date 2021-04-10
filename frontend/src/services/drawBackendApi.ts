@@ -72,7 +72,7 @@ export class drawBackendApi{
             "ProjectKey": 952,
             "DesignLayerKey": 3837,
             "LayoutMachineSheetSettingName": rawLayoutValues.LMSS,
-            "LayoutPatternSettingName": rawLayoutValues.LPaletteS,
+            "LayoutPatternSettingName": rawLayoutValues.LPatternS,
             "LayoutPaletteSettingName": rawLayoutValues.LPaletteS,
             "SheetX": rawLayoutValues.sheetX,
             "SheetY": rawLayoutValues.sheetY,

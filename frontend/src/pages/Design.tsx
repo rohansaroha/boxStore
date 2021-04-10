@@ -14,10 +14,10 @@ const Design = ()=>{
     const [loader,setLoader] = useState<boolean>(true);
     useEffect(()=>{
 
-        drawBackendApi.Canvas_3D()
-            .then((res)=>{
-                console.log("response for 3d preview api : ",res.data);
-            });
+        // drawBackendApi.Canvas_3D()
+        //     .then((res)=>{
+        //         console.log("response for 3d preview api : ",res.data);
+        //     });
             //standard id
             const standardId = window.location.href.split("/")[4];
             console.log("this is the standard id : ",standardId);
