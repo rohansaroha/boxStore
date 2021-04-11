@@ -25,7 +25,7 @@ const Design = ()=>{
             setStandardId(dstandardId);
             console.log("this is the standard id : ",dstandardId);
 
-            drawBackendApi.drawImage(dstandardId,"4","165",{ length: 18,width: 15,depth: 20,materialName: "Corrugated|B Flute" })
+            drawBackendApi.drawImage(dstandardId,"4","165",{ length: 280,width: 150,depth: 120,materialName: "Corrugated|B Flute" })
                 .then((res)=>{
                     drawBackendApi.updateCanvas(res.data.Layers[0].Preview)
                         .then((res)=>{
